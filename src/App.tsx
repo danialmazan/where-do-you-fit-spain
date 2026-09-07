@@ -73,6 +73,7 @@ function SelectField({ id, label, help, value, onChange, children, include, onIn
 function App() {
   const [language, setLanguage] = useState<Language>(languageFromUrl)
   const [profile, setProfile] = useState<ProfileState>(initialProfile)
+  const [ageInput, setAgeInput] = useState(String(initialProfile.age))
   const [data, setData] = useState<LoadedData | null>(null)
   const [error, setError] = useState(false)
   const resultsRef = useRef<HTMLElement>(null)
@@ -176,7 +177,30 @@ function App() {
             <div className="field-row">
               <div className="field-copy"><label htmlFor="age">{t.age}</label><p>{t.ageHelp}</p></div>
               <div className="field-control age-control">
-                <input id="age" type="number" min="18" max="100" value={profile.age} onChange={event => setProfile(current => ({ ...current, age: Math.max(18, Math.min(100, Number(event.target.value))) }))} />
+                <input
+                  id="age"
+                  type="number"
+                  min="18"
+                  max="100"
+                  inputMode="numeric"
+                  value={ageInput}
+                  onChange={event => {
+                    const value = event.target.value
+                    const age = Number(value)
+                    setAgeInput(value)
+                    if (/^\d{2,3}$/.test(value) && age >= 18 && age <= 100) {
+                      setProfile(current => ({ ...current, age }))
+                    }
+                  }}
+                  onBlur={() => {
+                    const parsedAge = Number(ageInput)
+                    const age = ageInput !== '' && Number.isFinite(parsedAge)
+                      ? Math.max(18, Math.min(100, Math.round(parsedAge)))
+                      : profile.age
+                    setAgeInput(String(age))
+                    setProfile(current => ({ ...current, age }))
+                  }}
+                />
                 <span>{language === 'es' ? 'años' : 'years'}</span>
               </div>
             </div>

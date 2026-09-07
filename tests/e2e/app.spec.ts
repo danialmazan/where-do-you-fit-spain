@@ -33,6 +33,11 @@ test('loads without horizontal overflow and exposes the full first interaction',
   }))
   expect(focusStyle.border).toBe('rgb(20, 92, 158)')
   expect(focusStyle.outline).toBe('none')
+
+  await ageInput.fill('')
+  await ageInput.pressSequentially('45')
+  await expect(ageInput).toHaveValue('45')
+  await expect(page.locator('.progression-label').first()).toContainText('Edad: 45')
 })
 
 test('switches language and explains both broadening and suppression', async ({ page }) => {
