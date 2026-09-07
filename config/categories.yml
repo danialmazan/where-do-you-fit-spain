@@ -1,0 +1,11 @@
+age:
+  narrow: ["18-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-74", "75-85", "86+"]
+activity: ["employee", "self_employed", "unemployed", "retired", "student", "other_inactive"]
+education: ["primary", "lower_secondary", "upper_secondary", "tertiary"]
+household: ["alone", "two_no_children", "one_parent", "two_with_children", "other_no_children", "other_with_children"]
+income: ["under_15k", "15_25k", "25_40k", "40_60k", "60k_plus"]
+reliability:
+  publish_raw_n: 50
+  publish_effective_n: 30
+  suppress_raw_n: 20
+  suppress_effective_n: 15

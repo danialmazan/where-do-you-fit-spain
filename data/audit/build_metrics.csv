@@ -1,0 +1,11 @@
+metric,value
+households,29369
+all_person_records,71398
+detailed_person_records,60825
+adult_analytic_records,58691
+weighted_adult_population,41029260.4820394
+complete_case_share,0.997802048014176
+salary_records,25587
+lookup_rows,79161
+suppressed_lookup_rows,57462
+low_reliability_lookup_rows,6546
